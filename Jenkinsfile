@@ -43,5 +43,14 @@ pipeline {
                 }
             }
         }
+        stage("Deploy sock app") {
+            steps {
+                script{
+                    dir('microservices-demo/') {
+                        sh "kubectl create -f ./deploy/kubernetes/manifests-monitoring"
+                    }
+                }
+            }
+        }
     }
 }
