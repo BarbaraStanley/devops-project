@@ -7,16 +7,16 @@ pipeline {
         AWS_DEFAULT_REGION = "us-east-1"
     }
     stages {
-        // stage("Create an EKS Cluster") {
-        //     steps {
-        //         script {
-        //             dir('terraform') {
-        //                 sh "terraform init"
-        //                 sh "terraform apply -auto-approve"
-        //             }
-        //         }
-        //     }
-        // }
+        stage("Create an EKS Cluster") {
+            steps {
+                script {
+                    dir('terraform') {
+                        sh "terraform init"
+                        sh "terraform apply -auto-approve"
+                    }
+                }
+            }
+        }
 
         stage("Deploy app") {
             steps {
@@ -43,7 +43,7 @@ pipeline {
                 }
             }
         }
-        stage("Deploy sock app") {
+        stage("Deploy sock monitoring") {
             steps {
                 script{
                     dir('microservices-demo/') {
