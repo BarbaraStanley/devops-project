@@ -1,0 +1,128 @@
+:root{
+    --colorz: rgb(40, 211, 25);
+    --padds: 20px;
+    --medium-font: 1.2em;
+    --big-font: 2.5em;
+    --input-padds: 10px 25px;
+    --border-curve: 8px;
+    --marg-bottom: 10px;
+    --bowder: 1px solid rgb(161, 217, 219);
+}
+*{
+    margin: 0px;
+    padding: 0px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+header {
+    top: 0;
+}
+.container{
+    /* width: 1000px; */
+    max-width: 100%;
+    min-height: 500px;
+    margin: 0 auto;
+    background-image: url("https://wallpaperaccess.com/full/1606406.jpg");
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgb(9, 243, 146);
+    color: #fff;
+    height: 60px;
+    padding: 0 20px;
+}
+  
+  /* Styling for the logo */
+  #logo a {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #fff;
+    text-decoration: none;
+  }
+  
+  /* Styling for the navbar links */
+  .navbar ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+  }
+  
+  .navbar li {
+    margin: 0 10px;
+  }
+  
+.navbar li a {
+    color: #fff;
+    text-decoration: none;
+}
+
+#form{
+    width: 60%;
+    margin: 30px auto;
+}
+.group{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+.label{
+    font-size: var(--medium-font);
+    color: var(--colorz);
+    margin-bottom: var(--marg-bottom);
+}
+
+input{
+    padding: var(--input-padds);
+    border-radius: var(--border-curve);
+    margin-bottom: var(--marg-bottom);
+    border: var(--bowder);
+}
+input::placeholder{
+    font-size: 15px;
+}
+input:focus{
+    outline-color: rgb(52, 163, 238);
+}
+select{
+    padding: var(--input-padds);
+    border-radius: var(--border-curve);
+    border: var(--bowder);
+}
+footer {
+    background-color: white;
+    height: 60px;
+    width: 100%;
+    border-top: solid 1px #CCCCCC;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#submit{
+    padding: var(--input-padds);
+    border-radius: var(--border-curve);
+    margin-top: 20px;
+    border: var(--bowder);
+    background-color: rgb(9, 243, 146);
+}
+#submit:hover{
+    background-color: rgb(48, 143, 187);
+}
+#submit:click{
+    background-color: blanchedalmond;
+}
+
+@media (max-width: 840px){
+    .form{
+        width: 100%;
+    }
+    .table{
+        width: 100%;
+        margin: 0 auto;
+    }
+}

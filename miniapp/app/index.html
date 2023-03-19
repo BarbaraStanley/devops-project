@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ID generator</title>
+    <link rel="stylesheet" href="./style.css" type="text/css" />
+    <link rel="icon" type="image/jpeg" href="images/card.webp" sizes="32x32">
+</head>
+<body class="container">
+    <header>
+        <div>
+            <nav class="navbar">
+                <div id="logo">
+                    <a href="#">ID GENERATOR</a>
+                </div>
+                <div class="navbar">
+                    <ul>
+                        <li><a href="#">Contact</a></li>
+                        <li><a href="#">Careers</a></li>
+
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </header>
+        <form method="post" id="form" action="submit">
+            <div class="group">
+                <label for ="First" class="label">First Name</label>
+                <input type="text" name="First" id="First" class="First" placeholder="First Name" required/>
+            </div>
+            <div class="group">
+                <label for="Last" class="label">Last Name</label>
+                <input type = "text" id="Last" class="Last" placeholder="Last Name" required/>
+            </div>
+            <div class="group">
+                <label for="Email" class="label">Email</label>
+                <input type="email" id="email" class="email" placeholder="Email" required/>
+            </div>
+            <div class="group">
+                <label for="dob" class="label">Date of Birth</label>
+                <input type="date" id="dob" required/>
+            </div>
+            <div class="group">
+                <label for="State" class="label">State</label>
+                <input type="search" id="State" class="State" required/>
+            </div>
+            <div class="group">
+                <label for="City" class="label">City</label>
+                <input type = "text" id="City" class="City" placeholder="City" required/>
+            </div>
+            <div class="group">
+                <label for="Phone" class="label">Phone Number</label>
+                <input type="tel" id="Phone" class="phone" placeholder="Phone Number" required/>
+            </div>
+            <div class="group">
+                <label for="Gender" class="label">Gender</label>
+                <select id="Gender">
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                    <option value="none">Prefer not to say</option>
+                </select>
+            </div>
+            <div class="group">
+                <button type="submit" id="submit">Get ID</button>
+            </div>
+        </form>
+        <footer>
+            @DevBarbea 2023
+        </footer>
+        <script src="./index.js"></script>
+    </body>
+</html>
