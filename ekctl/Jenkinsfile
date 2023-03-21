@@ -7,12 +7,20 @@ pipeline {
         AWS_DEFAULT_REGION = "us-east-1"
     }
     stages {
-        stage("Create an EKS Cluster") {
+        stage("Configure aws cli") {
             steps {
                 script {
-                    dir('terraform') {
-                        sh "terraform init"
-                        sh "terraform apply -auto-approve"
+                    dir('.') {
+                        sh "aws configure set aws_access_key_id "$AWS_ACCESS_KEY_ID" && aws configure set aws_secret_access_key "$AWS_SECRET_ACCESS_KEY" && aws configure set region "$AWS_DEFAULT_REGION" && aws configure set output "text""
+                    }
+                }
+            }
+        }
+        stage("Create an EKS Cluster with ekctl") {
+            steps {
+                script {
+                    dir('.') {
+                        sh "eksctl create cluster -f config.yaml"
                     }
                 }
             }
@@ -22,8 +30,7 @@ pipeline {
             steps {
                 script{
                     dir('miniapp/kubernetes') {
-                        sh "aws configure set aws_access_key_id "$AWS_ACCESS_KEY_ID" && aws configure set aws_secret_access_key "$AWS_SECRET_ACCESS_KEY" && aws configure set region "$AWS_DEFAULT_REGION" && aws configure set output "text""
-                        sh "aws eks update-kubeconfig --name devops-cluster --region us-east-1"
+                        sh "aws eks update-kubeconfig --name easyk8s-cluster --region us-east-1"
                         sh "kubectl create namespace id-gen"
                         sh "kubectl apply -f mongo-configmap.yaml"
                         sh "kubectl apply -f mongo-secret.yaml"

@@ -7,7 +7,7 @@ const User = require('./user'); // user model
 
 // Set up Express app and connect to MongoDB
 const app = express();
-mongoose.connect('mongodb://localhost/mydatabase');
+mongoose.connect(mongoUrl);
 const mongoUrl = process.env.MONGO_URL || 'mongodb://localhost:27017/mydatabase';
 
 app.use(bodyParser.json());

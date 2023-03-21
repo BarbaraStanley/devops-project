@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: idapp
+  name: idapp
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: idapp
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: idapp
+    spec:
+      containers:
+      - image: devbarbea/idgen
+        name: idgen
+        resources: {}
+status: {}
