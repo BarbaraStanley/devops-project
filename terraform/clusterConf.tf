@@ -49,11 +49,7 @@ resource "helm_release" "nginx_ingress" {
   ]
  
   depends_on = [helm_release.aws_lb_controller]
-}
- 
-data "aws_iam_role" "lb" {
-  name = "AmazonEKSLoadBalancerControllerRole"
-}
+} 
  
 #Create Service Account for ALB
 resource "kubernetes_service_account" "aws-load-balancer-controller" {
@@ -65,7 +61,7 @@ resource "kubernetes_service_account" "aws-load-balancer-controller" {
     }
     namespace = "kube-system"
     annotations = {
-      "eks.amazonaws.com/role-arn" = "${data.aws_iam_role.lb.arn}"
+      "eks.amazonaws.com/role-arn" = "${aws_iam_role.lb.arn}"
     }
   }
 }
