@@ -15,8 +15,8 @@ data "kubernetes_service" "ingress" {
 }
  
 resource "aws_route53_record" "ingress" {
-  zone_id = "" 
-  name = ""
+  zone_id = aws_route53_zone.main.zone_id
+  name = "devbarbea.me"
   type = "CNAME"
   ttl = "300"
   records = [data.kubernetes_service.ingress.status[0].load_balancer[0].ingress[0].hostname]
