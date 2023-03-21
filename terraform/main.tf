@@ -14,12 +14,6 @@ provider "aws" {
   profile                  = "vscode"
 }
 
-resource "aws_key_pair" "Web_keys" {
-  key_name   = "BarbKey"
-  public_key = file("/mnt/c/Users/USER/Desktop/DevBarbea/altschool-cloud-journey/AWS/Terraform/BarbKey.pub")
-}
-
-
 # Create eks cluster
 data "aws_iam_policy_document" "assume_role" {
   statement {
