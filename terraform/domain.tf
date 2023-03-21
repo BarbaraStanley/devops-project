@@ -14,14 +14,14 @@ data "kubernetes_service" "ingress" {
   depends_on = [helm_release.aws_lb_controller]
 }
  
-resource "aws_route53_record" "ingress" {
+resource "aws_route53_record" "socks" {
   zone_id = aws_route53_zone.main.zone_id
   name = "sock-shop.devbarbea.me"
   type = "CNAME"
   ttl = "300"
   records = [data.kubernetes_service.ingress.status[0].load_balancer[0].ingress[0].hostname]
 }
-resource "aws_route53_record" "ingress" {
+resource "aws_route53_record" "idapp" {
   zone_id = aws_route53_zone.main.zone_id
   name = "id-app.devbarbea.me"
   type = "CNAME"
