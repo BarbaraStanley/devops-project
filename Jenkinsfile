@@ -7,6 +7,16 @@ pipeline {
         AWS_DEFAULT_REGION = "us-east-1"
     }
     stages {
+        stage("Configure aws cli") {
+            steps {
+                script {
+                    dir('.') {
+                        sh "aws configure set aws_access_key_id "$AWS_ACCESS_KEY_ID" && aws configure set aws_secret_access_key "$AWS_SECRET_ACCESS_KEY" && aws configure set region "$AWS_DEFAULT_REGION" && aws configure set output "text""
+                    }
+                }
+            }
+        }
+        
         stage("Create an EKS Cluster") {
             steps {
                 script {
@@ -22,7 +32,6 @@ pipeline {
             steps {
                 script{
                     dir('miniapp/kubernetes') {
-                        sh "aws configure set aws_access_key_id "$AWS_ACCESS_KEY_ID" && aws configure set aws_secret_access_key "$AWS_SECRET_ACCESS_KEY" && aws configure set region "$AWS_DEFAULT_REGION" && aws configure set output "text""
                         sh "aws eks update-kubeconfig --name devops-cluster --region us-east-1"
                         sh "kubectl create namespace id-gen"
                         sh "kubectl apply -f mongo-configmap.yaml"
