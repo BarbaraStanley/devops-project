@@ -8,15 +8,22 @@ resource "aws_route53_zone" "main" {
 
 data "kubernetes_service" "ingress" {
   metadata {
-    name = "ingress-nginx-ingress-nginx"
-    namespace = "ingress-nginx"
+    name = "aws-load-balancer-controller"
+    namespace = "kube-system"
   }
-  depends_on = [helm_release.nginx_ingress]
+  depends_on = [helm_release.aws_lb_controller]
 }
  
 resource "aws_route53_record" "ingress" {
   zone_id = aws_route53_zone.main.zone_id
-  name = "devbarbea.me"
+  name = "sock-shop.devbarbea.me"
+  type = "CNAME"
+  ttl = "300"
+  records = [data.kubernetes_service.ingress.status[0].load_balancer[0].ingress[0].hostname]
+}
+resource "aws_route53_record" "ingress" {
+  zone_id = aws_route53_zone.main.zone_id
+  name = "id-app.devbarbea.me"
   type = "CNAME"
   ttl = "300"
   records = [data.kubernetes_service.ingress.status[0].load_balancer[0].ingress[0].hostname]
