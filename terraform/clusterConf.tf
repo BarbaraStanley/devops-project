@@ -75,7 +75,7 @@ resource "helm_release" "aws_lb_controller" {
  
   set {
     name  = "clusterName"
-    value = "mon-dev"
+    value = aws_eks_cluster.devops-cluster.name
   }
  
   set {
