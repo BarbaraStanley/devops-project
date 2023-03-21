@@ -9,8 +9,7 @@ terraform {
 
 # Configure the AWS Provider
 provider "aws" {
-  region                   = "us-east-1" 
-  profile                  = "vscode"
+  region                   = "us-east-1"
 }
 
 # Create eks cluster
