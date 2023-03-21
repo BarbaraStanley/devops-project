@@ -1,0 +1,14 @@
+controller:
+  name: "nginx-ingress"
+  image:
+    tag: "0.49.0"
+  config:
+    use-proxy-protocol: true
+    real-ip-header:  "proxy_protocol"
+    proxy-real-ip-cidr: "0.0.0.0/0"
+  service:
+    annotations:
+      service.beta.kubernetes.io/aws-load-balancer-backend-protocol: "tcp"
+      service.beta.kubernetes.io/aws-load-balancer-proxy-protocol: "*"
+      service.beta.kubernetes.io/aws-load-balancer-internal: "true"
+ 
