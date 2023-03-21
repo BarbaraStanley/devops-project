@@ -5,6 +5,8 @@ pipeline {
         AWS_ACCESS_KEY_ID = credentials('AWS_ACCESS_KEY_ID')
         AWS_SECRET_ACCESS_KEY = credentials('AWS_SECRET_ACCESS_KEY')
         AWS_DEFAULT_REGION = "us-east-1"
+        NAMESPACE = "id-gen"
+        NAMESPACE1 = "sock-shop"
     }
     stages {
         // stage("Configure aws cli") {
@@ -33,7 +35,7 @@ pipeline {
                 script{
                     dir('miniapp/kubernetes') {
                         sh "aws eks update-kubeconfig --name devops-cluster --region us-east-1"
-                        sh "kubectl create namespace id-gen"
+                        sh "kubectl get namespace $NAMESPACE || kubectl create namespace $NAMESPACE"
                         sh "kubectl apply -f mongo-configmap.yaml"
                         sh "kubectl apply -f mongo-secret.yaml"
                         sh "kubectl apply -f mongodb.yaml"
@@ -46,7 +48,7 @@ pipeline {
             steps {
                 script{
                     dir('microservices-demo/deploy/kubernetes') {
-                        sh "kubectl create namespace sock-shop"
+                        sh "kubectl get namespace $NAMESPACE1 || kubectl create namespace $NAMESPACE1"
                         sh "kubectl apply -f complete-demo.yaml"
                         sh "kubectl apply -f ingresser.yaml"
                     }
