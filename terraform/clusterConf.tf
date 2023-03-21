@@ -57,7 +57,7 @@ resource "helm_release" "ingress" {
 } 
   */
 #Create Service Account for ALB
-resource "kubernetes_service_account" "aws-load-balancer-controller" {
+/* resource "kubernetes_service_account" "aws-load-balancer-controller" {
   metadata {
     name = "aws-load-balancer-controller"
     labels = {
@@ -80,7 +80,7 @@ resource "kubernetes_secret" "aws-load-balancer-controller" {
   metadata {
     name = "aws-load-balancer-controller"
   }
-}
+} */
  
 #Install AWS LB controller
 resource "helm_release" "aws_lb_controller" {
