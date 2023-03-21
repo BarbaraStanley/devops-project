@@ -33,7 +33,7 @@ metadata:
   namespace: id-gen
 spec:
   selector:
-    app: mongo-express
+    app: idgen-app
   type: LoadBalancer
   ports:
   - protocol: TCP
