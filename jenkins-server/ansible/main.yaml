@@ -1,0 +1,56 @@
+---
+- name: Install jenkins, kubectl, awscli, helm, eksctl, and flux on linux(Ubuntu) machine
+  hosts: all
+  become: true
+  
+  tasks:
+    - name: Install Java
+      apt:
+        name: openjdk-11-jdk
+        update_cache: yes
+
+    - name: Add Jenkins APT key
+      apt_key:
+        url: https://pkg.jenkins.io/debian-stable/jenkins.io.key
+        state: present
+
+    - name: Add Jenkins APT repository
+      apt_repository:
+        repo: deb https://pkg.jenkins.io/debian-stable binary/
+        state: present
+
+    - name: Install Jenkins
+      apt:
+        name: jenkins
+        state: present
+
+    - name: Start Jenkins service
+      systemd:
+        name: jenkins
+        state: started
+        enabled: yes
+
+    - name: Install kubectl
+      apt:
+        name: kubectl
+        state: present
+
+    - name: Install aws cli
+      apt:
+        name: awscli
+        state: present
+
+    - name: Install helm
+      apt:
+        name: helm
+        state: present
+
+    - name: Install eksctl
+      shell: |
+        sudo apt-get update && \
+        sudo apt-get install -y apt-transport-https && \
+        sudo curl --silent --location "https://github.com/weaveworks/eksctl/releases/latest/download/eksctl_$(uname -s)_amd64.tar.gz" | sudo tar xz -C /usr/local/bin
+
+    - name: Install flux
+      shell: |
+        curl -s https://fluxcd.io/install.sh | sudo bash

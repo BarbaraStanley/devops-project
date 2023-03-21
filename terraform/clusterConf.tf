@@ -67,6 +67,8 @@ resource "kubernetes_service_account" "aws-load-balancer-controller" {
   secret {
     name = "${kubernetes_secret.aws-load-balancer-controller.metadata.0.name}"
   }
+  depends_on = [kubernetes_secret.aws-load-balancer-controller,
+                aws_iam_role.lb.arn]
 }
 
 resource "kubernetes_secret" "aws-load-balancer-controller" {
