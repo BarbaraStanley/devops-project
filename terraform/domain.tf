@@ -6,7 +6,7 @@ resource "aws_route53_zone" "main" {
   }
 }
 
-data "kubernetes_service" "ingress" {
+/* data "kubernetes_service" "ingress" {
   metadata {
     name = "aws-load-balancer-controller"
     namespace = "kube-system"
@@ -27,4 +27,4 @@ resource "aws_route53_record" "idapp" {
   type = "CNAME"
   ttl = "300"
   records = [data.kubernetes_service.ingress.status[0].load_balancer[0].ingress[0].hostname]
-}
+} */
