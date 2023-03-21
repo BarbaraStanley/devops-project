@@ -6,7 +6,7 @@ resource "aws_route53_zone" "main" {
   }
 }
 
-data "kuberntes_service" "ingress" {
+data "kubernetes_service" "ingress" {
   metadata {
     name = "ingress-nginx-ingress-nginx"
     namespace = "ingress-nginx"
