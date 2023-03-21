@@ -37,7 +37,6 @@ pipeline {
                         sh "kubectl apply -f mongo-configmap.yaml"
                         sh "kubectl apply -f mongo-secret.yaml"
                         sh "kubectl apply -f mongodb.yaml"
-                        sh "kubectl apply -f express.yml"
                         sh "kubectl apply -f idgen.yaml"
                     }
                 }
@@ -49,6 +48,7 @@ pipeline {
                     dir('microservices-demo/deploy/kubernetes') {
                         sh "kubectl create namespace sock-shop"
                         sh "kubectl apply -f complete-demo.yaml"
+                        sh "kubectl apply -f ingresser.yaml"
                     }
                 }
             }
