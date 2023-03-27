@@ -45,6 +45,15 @@ pipeline {
                 }
             }
         }
+        stage("Deploy sock monitoring") {
+            steps {
+                script{
+                    dir('microservices-demo/') {
+                        sh "kubectl create -f ./deploy/kubernetes/manifests-monitoring"
+                    }
+                }
+            }
+        }
         stage("Deploy sock app") {
             steps {
                 script{
@@ -53,15 +62,6 @@ pipeline {
                         sh "kubectl get namespace $NAMESPACE2 || kubectl create namespace $NAMESPACE2"
                         sh "kubectl apply -f complete-demo.yaml"
                         sh "kubectl apply -f ingresser.yaml"
-                    }
-                }
-            }
-        }
-        stage("Deploy sock monitoring") {
-            steps {
-                script{
-                    dir('microservices-demo/') {
-                        sh "kubectl create -f ./deploy/kubernetes/manifests-monitoring"
                     }
                 }
             }
