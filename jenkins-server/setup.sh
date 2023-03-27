@@ -60,7 +60,7 @@ helm repo add fluxcd https://charts.fluxcd.io
 helm repo update
 
 # Install Flux using Helm
-helm upgrade -i flux fluxcd/flux --namespace flux --set git.url=https://github.com/BarbaraStanley/devops-project --set git.branch=master --set git.path=devops-project/flux
+sudo yum install flux -y
 
 # Install Flux Helm Operator using Helm
 helm upgrade -i flux-helm-operator fluxcd/flux-helm-operator --namespace flux --set git.ssh.secretName=flux-git-deploy --set helm.versions=v3

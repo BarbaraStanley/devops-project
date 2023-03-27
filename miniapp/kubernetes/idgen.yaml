@@ -34,7 +34,7 @@ metadata:
 spec:
   selector:
     app: idgen-app
-  type: LoadBalancer
+  type: NodePort
   ports:
   - protocol: TCP
     port: 80
