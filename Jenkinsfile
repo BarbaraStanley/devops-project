@@ -50,6 +50,7 @@ pipeline {
                 script{
                     dir('microservices-demo/deploy/kubernetes') {
                         sh "kubectl get namespace $NAMESPACE1 || kubectl create namespace $NAMESPACE1"
+                        sh "kubectl get namespace $NAMESPACE2 || kubectl create namespace $NAMESPACE2"
                         sh "kubectl apply -f complete-demo.yaml"
                         sh "kubectl apply -f ingresser.yaml"
                     }
