@@ -7,6 +7,7 @@ pipeline {
         AWS_DEFAULT_REGION = "us-east-1"
         NAMESPACE = "id-gen"
         NAMESPACE1 = "sock-shop"
+        NAMESPACE2 = "monitoring"
     }
     stages {
         // stage("Configure aws cli") {
@@ -59,6 +60,7 @@ pipeline {
             steps {
                 script{
                     dir('microservices-demo/') {
+                        sh "kubectl get namespace $NAMESPACE2 || kubectl create namespace $NAMESPACE2"
                         sh "kubectl create -f ./deploy/kubernetes/manifests-monitoring"
                     }
                 }
